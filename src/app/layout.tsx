@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +28,23 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header>
+          <h1>Solar Invest</h1>
+          <nav>
+            <Link href="/">Products</Link>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <Link href="/cart">Cart</Link>
+          </nav>
+        </header>
         {children}
+        <footer>
+          <p>&copy; 2025 Solar Invest. All Rights Reserved.</p>
+          <p>
+            <a href="#privacy">Privacy Policy</a>d
+            <a href="#terms">Terms of Service</a>
+          </p>
+        </footer>
       </body>
     </html>
   );

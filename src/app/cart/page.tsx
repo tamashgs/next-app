@@ -1,15 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import { useState } from "react";
+import { JSX, useContext } from "react";
+import { AppContext, AppProvider } from "@/context";
 
 export default function Cart() {
-  const items  =  [
-      { id: 1, name: 'Residential Solar Panel', description: 'Perfect for powering your home with clean energy.', price: 499, quantity: 1 },
-      { id: 2, name: 'Commercial Solar Panel', description: 'Ideal for businesses and industrial applications.', price: 799, quantity: 2 },
-      { id: 3, name: 'Premium Solar Panel', description: 'High efficiency with advanced solar technology.', price: 999, quantity: 1 }
-    ];
-
-    const [cartItems, setCartItems] = useState(items);
-
+  const { cart, setCart: setCartItems } = useContext(AppContext);
+  const cartItems = cart as any[];
+  
   // Function to calculate total price
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
@@ -17,8 +15,8 @@ export default function Cart() {
 
   // Function to update the quantity of an item
   const updateQuantity = (id: number, newQuantity: number) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
+    setCartItems((prevItems: { id: number; }[]) =>
+      prevItems.map((item: { id: number; }) =>
         item.id === id ? { ...item, quantity: newQuantity > 0 ? newQuantity : 1 } : item
       )
     );
@@ -26,7 +24,7 @@ export default function Cart() {
 
   // Function to remove an item from the cart
   const removeItem = (id: number) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    setCartItems((prevItems: any[]) => prevItems.filter((item) => item.id !== id));
   };
 
   return (

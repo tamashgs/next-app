@@ -1,8 +1,9 @@
 import Image from "next/image";
+import AddButton from "./components/AddButton";
 
 export default function Home() {
     const items = [
-      { id: 1, name: 'Residential Solar Panel', description: 'Perfect for powering your home with clean energy.', price: 499, quantity: 1 },
+      { id: 1, name: 'Residential Solar Panel', description: 'Perfect for powering your home clean energy.', price: 499, quantity: 1 },
       { id: 2, name: 'Commercial Solar Panel', description: 'Ideal for businesses and industrial applications.', price: 799, quantity: 2 },
       { id: 3, name: 'Premium Solar Panel', description: 'High efficiency with advanced solar technology.', price: 999, quantity: 1 }
     ];
@@ -19,12 +20,14 @@ export default function Home() {
 
         <section id="products" className="product-grid">
           {items.map(item=>           (
-            <div className="product-card" key={item.id}>
+            <div className="product-card pb-2" key={item.id}>
               <Image src="/solar-panel.jpg" width={1000} height={1000} alt={item.name} />
               <h3>{item.name}</h3>
               <p>{item.description}</p>
               <p className="price">{item.price}</p>
-              <button>Add to Cart</button>
+              <div className="justify-self-center">
+                <AddButton item={item}/>
+              </div>
           </div>))}
         </section>
       </div>

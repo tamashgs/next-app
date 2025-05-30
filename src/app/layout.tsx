@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import { AppProvider } from "@/context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,16 +33,18 @@ export default function RootLayout({
           <h1>Solar Invest</h1>
           <nav>
             <Link href="/">Products</Link>
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact</a>
+            {/* <a href="#about">About Us</a>
+            <a href="#contact">Contact</a> */}
             <Link href="/cart">Cart</Link>
           </nav>
         </header>
-        {children}
+        <AppProvider>
+          	{children}
+        </AppProvider>
         <footer>
           <p>&copy; 2025 Solar Invest. All Rights Reserved.</p>
           <p>
-            <a href="#privacy">Privacy Policy</a>d
+            <a href="#privacy">Privacy Policy</a> {" "}
             <a href="#terms">Terms of Service</a>
           </p>
         </footer>
